@@ -6,6 +6,8 @@ from models.user import User
 from models.transaction import Transaction
 from models.wallet import Wallet
 
+#TODO Create custom http error responsones
+
 
 def init_app(config=Config, db=None):
     app = Flask(__name__)

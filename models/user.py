@@ -1,4 +1,3 @@
-from sqlalchemy.dialects.postgresql import UUID
 from .mixin import TimestampMixin
 import uuid
 from . import db
@@ -8,7 +7,7 @@ class User(db.Model, TimestampMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     external_id = db.Column(
-        UUID(as_uuid=True),
+        db.String(150),
         index=True,
         default=uuid.uuid4,
         comment='For use when exposing record to public eg (API)',

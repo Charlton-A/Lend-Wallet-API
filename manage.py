@@ -32,12 +32,12 @@ def seed_db():
     db.session.add(Wallet(user_id=1, currency="KES", balance=90000.50))
     for item in range(1, 11):
         db.session.add(
-            Transaction(
-                wallet_id=1,
-                txn_type=randint(1, 2),
-                status=randint(1, 3),
-                amount=fake.pyfloat(positive=True, max_value=7000),
-            ))
+            Transaction(wallet_id=1,
+                        txn_type=randint(1, 2),
+                        status=randint(1, 3),
+                        amount=fake.pyfloat(positive=True, max_value=7000),
+                        provider=randint(1, 2),
+                        name=fake.ascii_safe_email()))
 
     db.session.commit()
 

@@ -8,7 +8,7 @@ class Config(object):
 
 
 class DevelopmentConfig(Config):
-    FLAAENV = "development"
+    FLASK_ENV = "development"
     DEVELOPMENT = True
     TESTING = True
     SECRET_KEY = os.environ.get("APP_KEY")
