@@ -50,6 +50,8 @@ The other end point filters transactions based on start date and end date
 | GET    |   /api/v1/profile    | Get data to display on Screen 2 |
 | GET    | / api/v1/filter/date | Get data to display on screen 3 |
 
+[There is postman collection file](/postman-collection/lend-wallet-postman-collection.json)
+
 ## Getting Started
 
 [The docker-compose file](docker-compose.yml) contains the components needed to the services.

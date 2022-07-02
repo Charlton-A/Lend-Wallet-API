@@ -9,6 +9,10 @@ class DateFilterView(MethodView):
     decorators = [token_required]
 
     def get(self, current_user):
+        """
+        Get transations based on start date and end date passed as query parameters.
+        Use default start and end date if not set
+        """
         start_date_obj = (datetime.now() - timedelta(weeks=24)).date(),
         end_date_obj = (datetime.now() + timedelta(weeks=1)).date(),
 
