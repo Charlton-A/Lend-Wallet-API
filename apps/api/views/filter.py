@@ -22,6 +22,7 @@ class DateFilterView(MethodView):
         wallet = Wallet.query.filter_by(user_id=current_user.id).first()
 
         profile_data = {
+            "user": current_user.user_name,
             "transactions": [
                 item.to_json()
                 for item in wallet.date_range(start_date_obj, end_date_obj)

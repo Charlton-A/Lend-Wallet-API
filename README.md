@@ -42,6 +42,14 @@
 This repo is an implementaion of wallet API to fetch user profile and recent transactions on one end point.
 The other end point filters transactions based on start date and end date
 
+# API Endpoints
+
+| METHOD |       ENDPOINT       |                     DESCRIPTION |
+| ------ | :------------------: | ------------------------------: |
+| GET    |     /api/v1/ping     |      Ping to check if API is up |
+| GET    |   /api/v1/profile    | Get data to display on Screen 2 |
+| GET    | / api/v1/filter/date | Get data to display on screen 3 |
+
 ## Getting Started
 
 [The docker-compose file](docker-compose.yml) contains the components needed to the services.
@@ -55,29 +63,42 @@ docker-compose up
 # Running Tests
 
 Python 3.9+ is required\
-You can create a virtual environment in the folder using
+While still in the root directory of the project. You can create a virtual environment in the folder using
 
 ```shell
- python{PYTHON_VERSION} -m venv simple
+ python{PYTHON_VERSION} -m venv lend
+```
+
+You can activate the environment using
+
+```shell
+source lend/bin/activate
 ```
 
 To install depenndencies.
 
 ```shell
-make init
+(venv) make init
 ```
 
-To run tests
+To run unit tests
 
 ```shell
-make unit_tests
+(venv)  make unit_tests
 ```
 
+To run integration tests ensure all the services are running then run.
+
+```shell
+(venv)  make integration_tests
 ```
 
+To run all tests with coverage report .
 
+```shell
+(venv)  make all_tests
+```
 
 ### Assumtions
 
 A user can only have one wallet
-```
