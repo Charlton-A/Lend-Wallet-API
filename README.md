@@ -1,4 +1,4 @@
-# LEND-WALLET-API
+# Lend Wallet API
 
 ## Structure
 
