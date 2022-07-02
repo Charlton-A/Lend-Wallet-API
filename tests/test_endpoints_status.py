@@ -21,18 +21,18 @@ def test_ping(client):
 
 
 @pytest.mark.unit
-def test_login(client):
+def test_login_nok(client):
     response = client.get("/api/v1/login")
     assert response.status_code == 405
 
 
 @pytest.mark.unit
-def test_profile(client):
+def test_profile_nok(client):
     response = client.get("/api/v1/profile")
     assert response.status_code == 401
 
 
 @pytest.mark.unit
-def test_date_filter(client):
+def test_date_filter_nok(client):
     response = client.get("/api/v1/filter/date")
     assert response.status_code == 401

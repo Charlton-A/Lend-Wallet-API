@@ -5,7 +5,7 @@ from models.transaction import Transaction
 
 
 @pytest.mark.unit
-def test_user():
+def test_user_create_ok():
     user = User(
         user_name="Rick_Sanchez",
         email="ricksanchez@c137.com",
@@ -17,7 +17,7 @@ def test_user():
 
 
 @pytest.mark.unit
-def test_wallet():
+def test_wallet_create_ok():
     wallet = Wallet(
         user_id=1,
         currency="KES",
@@ -29,7 +29,7 @@ def test_wallet():
 
 
 @pytest.mark.unit
-def test_transaction():
+def test_transaction_create_ok():
     txn = Transaction(
         wallet_id=1,
         txn_type=1,

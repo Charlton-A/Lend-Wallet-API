@@ -3,7 +3,20 @@ import requests
 
 
 @pytest.mark.integration
-def test_profile():
+def test_login_nok():
+    BASE_URL = "http://localhost:8003"
+    login_url = BASE_URL + "/api/v1/login"
+    profile_url = BASE_URL + "/api/v1/filter/date"
+    creds = {
+        "username": "test_user",
+        "password": "password",
+    }
+    login_response = requests.post(login_url, json=creds)
+    assert login_response.status_code == 401
+
+
+@pytest.mark.integration
+def test_profile_ok():
     BASE_URL = "http://localhost:8003"
     login_url = BASE_URL + "/api/v1/login"
     profile_url = BASE_URL + "/api/v1/profile"
@@ -23,7 +36,7 @@ def test_profile():
 
 
 @pytest.mark.integration
-def test_filter_by_date():
+def test_filter_by_date_ok():
     BASE_URL = "http://localhost:8003"
     login_url = BASE_URL + "/api/v1/login"
     profile_url = BASE_URL + "/api/v1/filter/date"
