@@ -1,0 +1,50 @@
+version: '3.7'
+
+networks:
+  lend-dev:
+    driver: bridge
+
+services:
+  lend-db:
+    container_name: lend-db
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    networks:
+      - lend-dev
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+
+  web:
+    build: ./
+    image: lend-wallet-backend
+    container_name: lend-backend
+
+    volumes:
+      - ./:/usr/src/app/
+    links:
+      - lend-db
+    depends_on:
+      - lend-db
+    ports:
+      - 8003:5000
+    env_file:
+      - .env
+    networks:
+      - lend-dev
+
+
+  adminer:
+    image: adminer
+    container_name: lend-db-admin
+    restart: always
+    ports:
+      - 8077:8080
+    depends_on:
+      - lend-db
+    networks:
+      - lend-dev
