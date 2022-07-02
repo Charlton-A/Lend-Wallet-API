@@ -1,11 +1,8 @@
-from asyncio.trsock import TransportSocket
-from sqlalchemy.dialects.postgresql import UUID
 import uuid
 
 from models.transaction import Transaction
 
-from sqlalchemy import desc
-from sqlalchemy.ext.serializer import loads, dumps
+from sqlalchemy import desc, and_, func
 from .mixin import TimestampMixin
 from . import db
 
@@ -32,6 +29,18 @@ class Wallet(db.Model, TimestampMixin):
         self.user_id = user_id
         self.currency = currency
         self.balance = balance
+
+    def date_range(self, start_date, end_date):
+        return Transaction.query.filter(
+            and_(Transaction.wallet_id == self.id,
+                 func.date(Transaction.created_at) >= start_date),
+            func.date(Transaction.created_at) <= end_date).all()
+
+    @property
+    def recent_txns(self):
+        return Transaction.query.filter(
+            Transaction.wallet_id == self.id).order_by(
+                desc(Transaction.created_at)).all()[:5]
 
     def __repr__(self):
         return f'<Wallet {self.external_id}>'

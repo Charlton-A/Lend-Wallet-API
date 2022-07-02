@@ -15,5 +15,8 @@ class ProfileView(MethodView):
             "user": current_user.user_name,
             "balance": wallet.balance,
             "currency": wallet.currency,
+            "recent_transactions": [
+                item.to_json() for item in wallet.recent_txns
+            ],
         }
         return jsonify(profile_data)

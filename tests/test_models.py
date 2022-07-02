@@ -1,25 +1,11 @@
-from http.client import IM_USED
 import pytest
-from apps import init_app
-from conf import DevelopmentConfig
 from models.user import User
 from models.wallet import Wallet
 from models.transaction import Transaction
 
 
-@pytest.fixture()
-def app():
-    app = init_app(DevelopmentConfig)
-    return app
-
-
-@pytest.fixture()
-def client(app):
-    return app.test_client()
-
-
 @pytest.mark.unit
-def test_user(client):
+def test_user():
     user = User(
         user_name="Rick_Sanchez",
         email="ricksanchez@c137.com",
@@ -31,7 +17,7 @@ def test_user(client):
 
 
 @pytest.mark.unit
-def test_wallet(client):
+def test_wallet():
     wallet = Wallet(
         user_id=1,
         currency="KES",
@@ -43,7 +29,7 @@ def test_wallet(client):
 
 
 @pytest.mark.unit
-def test_transaction(client):
+def test_transaction():
     txn = Transaction(
         wallet_id=1,
         txn_type=1,

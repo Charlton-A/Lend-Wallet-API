@@ -33,5 +33,16 @@ class Transaction(db.Model, TimestampMixin):
         self.name = name
         self.provider = provider
 
+    def to_json(self):
+        json_transactions = {
+            "external_id": self.external_id,
+            "provider": self.provider,
+            "amount": self.amount,
+            "txn_type": self.txn_type,
+            "name": self.name,
+            "created_at": self.created_at,
+        }
+        return json_transactions
+
     def __repr__(self):
         return f'<Transaction {self.external_id}>'
