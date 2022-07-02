@@ -55,7 +55,7 @@ The other end point filters transactions based on start date and end date
 ## Getting Started
 
 [The docker-compose file](docker-compose.yml) contains the components needed to the services.
-In the root project directory, boot up the services in the docker compose file using
+In the root project directory, boot up the services in the docker compose file using .This will also seed the database.
 Ensure ports 8003,5432(postgres) and 8077 are not in use
 
 ```shell
